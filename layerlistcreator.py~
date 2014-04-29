@@ -75,14 +75,22 @@ class layerListCreator:
 	layers = canvas.layers()
 	#QMessageBox.information(self.iface.mainWindow(),u"Tjoho",u"Visst är QGIS kul!")
 	lagerLista = u"# Ladda Lager QGIS Plugin av Klas Karlsson\n"
-	for layer in layers:
+	for layer in reversed(layers):
 	    layerType = layer.type()
+	    lagerkalla = layer.publicSource()
 	    if layerType == QgsMapLayer.VectorLayer:
-	        # do some stuff here
-		lagerLista = lagerLista + (u"OGR,%s,%s\n" % (layer.name(), layer.publicSource()))
+	        if "DBNAME=" in lagerkalla.upper():
+			lagerLista = lagerLista + (u"POSTGIS,%s,%s\n" % (layer.name(), lagerkalla))
+		elif "WFS" in lagerkalla.upper():
+			lagerLista = lagerLista + (u"WFS,%s,%s\n" % (layer.name(), lagerkalla))
+		else:
+			lagerLista = lagerLista + (u"OGR,%s,%s\n" % (layer.name(), lagerkalla))
 		self.dlg.listWidget.addItem(layer.name())
 	    if layerType == QgsMapLayer.RasterLayer:
-		lagerLista = lagerLista + (u"RASTER,%s,%s\n" % (layer.name(), layer.publicSource()))
+		if "WMS" in lagerkalla.upper():
+			lagerLista = lagerLista + (u"wms,%s,%s\n" % (layer.name(), lagerkalla))
+		else:
+			lagerLista = lagerLista + (u"RASTER,%s,%s\n" % (layer.name(), lagerkalla))
 		self.dlg.listWidget.addItem(layer.name())
 	return lagerLista	
 	#QMessageBox.information(self.iface.mainWindow(),u"Tjoho",lagerLista)
@@ -104,6 +112,6 @@ class layerListCreator:
             # do something useful (delete the line containing pass and
             # substitute with your code)
             filnamn = QFileDialog.getSaveFileName(None, 'Save File', '.')
-	    spara = codec.open(filnamn, 'w', 'utf-8')
+	    spara = codecs.open(filnamn, 'w', 'utf-8')
 	    spara.write(lagerLista)
 	    spara.close()

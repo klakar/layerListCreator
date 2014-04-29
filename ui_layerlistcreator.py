@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui_layerlistcreator.ui'
 #
-# Created: Tue Apr 29 18:09:27 2014
+# Created: Tue Apr 29 20:38:44 2014
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -54,7 +54,7 @@ class Ui_layerListCreator(object):
         QtCore.QMetaObject.connectSlotsByName(layerListCreator)
 
     def retranslateUi(self, layerListCreator):
-        layerListCreator.setWindowTitle(QtGui.QApplication.translate("layerListCreator", "layerListCreator", None, QtGui.QApplication.UnicodeUTF8))
+        layerListCreator.setWindowTitle(QtGui.QApplication.translate("layerListCreator", "Skapa Lagerlista för Ladda Lager plugin", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("layerListCreator", "Inkluderade lager", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("layerListCreator", "Included layers", None, QtGui.QApplication.UnicodeUTF8))
 
