@@ -112,6 +112,7 @@ class layerListCreator:
             # do something useful (delete the line containing pass and
             # substitute with your code)
             filnamn = QFileDialog.getSaveFileName(None, 'Save File', '.')
-	    spara = codecs.open(filnamn, 'w', 'utf-8')
-	    spara.write(lagerLista)
-	    spara.close()
+	    if filnamn != "":
+		spara = codecs.open(filnamn, 'w', 'utf-8')
+		spara.write(lagerLista)
+		spara.close()
