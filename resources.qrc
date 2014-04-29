@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/layerlistcreator" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
